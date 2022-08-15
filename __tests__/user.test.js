@@ -38,7 +38,7 @@ const mockUser = {
     afterAll(() => {
       pool.end();
     });
-    it('creates a new user', async () => {
+    it.skip('creates a new user', async () => {
     
       const res = await request(app).post('/api/v1/users').send(mockUser);
       const { firstName, lastName, email } = mockUser;
@@ -51,13 +51,14 @@ const mockUser = {
       });
     });
   
-      it.skip('returns the current user', async () => {
-    const [agent, user] = await registerAndLogin();
+      it('returns the current user', async () => {
+    const [agent, user] = await Login();
     
     const me = await agent.get('/api/v1/users/me');
     
     expect(me.body).toEqual({
       ...user,
+      
       exp: expect.any(Number),
       iat: expect.any(Number),
     });
@@ -67,7 +68,7 @@ const mockUser = {
     });
   
     it.skip('should return a list of users if signed in as admin', async () => {
-      const [agent, user] = await registerAndLogin({ email: 'admin' });
+      const [agent, user] = await Login({ email: 'admin' });
       const res = await agent.get('/api/v1/users');
   
       expect(res.body).toEqual([{ ...user }]);
