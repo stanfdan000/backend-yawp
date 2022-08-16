@@ -44,10 +44,12 @@ INSERT INTO users (first_name, last_name, email, password_hash) VALUES
 INSERT INTO restaurants (name, city, address ) VALUES
 ('burger king', 'alberta', 'north helmond drive'),
 ('panda express', 'alberta', 'north creek drive'),
-('mcdonalds', 'spokane', 'north bend drive');
+('mcdonalds', 'spokane', 'north bend drive'),
+('red robbins', 'brooklyn', 'north peek drive');
 
 
 INSERT INTO users_restaurants (users_id, restaurants_id, rating, comment) VALUES
 (1, 1, '10', 'it was great'),
 (1, 2, '2', 'really sucked'),
 (1, 3, '4', 'not bad but wont eat it again');
+

@@ -47,6 +47,20 @@ describe('restaurants routes', () => {
 
 
 
+  it('POST /restaurants should create a new review', async () => {
+    const res = await request(app).post('/api/v1/restaurants/reviews').send({
+      rating: '5',
+      comment: 'oh my gosh that was the best food ever',
+      
+    });
+    expect(res.body.rating).toBe(200);
+    expect(res.body.comment).toBe('');
+    
+  });
+
+
+
+
     
 
 
