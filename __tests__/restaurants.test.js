@@ -55,7 +55,6 @@ describe('restaurants routes', () => {
       comment: 'oh my gosh that was the best food ever',
       
     });
-    console.log('hello world', res.body);
     expect(res.status).toBe(200);
     expect(res.body.rating).toBe('5');
     expect(res.body.comment).toBe('oh my gosh that was the best food ever');
