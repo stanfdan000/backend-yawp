@@ -26,7 +26,6 @@ describe('restaurants routes', () => {
 
   it('restaurants/:id should return details with restaurant', async () => {
     const res = await request(app).get('/api/v1/restaurants/1');
-    console.log(res.body);
     expect(res.body).toEqual({
       id: '1',
       name: 'burger king',
