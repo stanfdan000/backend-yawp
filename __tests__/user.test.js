@@ -38,37 +38,18 @@ describe('restaurants routes', () => {
   it('creates a new user', async () => {
       
     const res = await request(app).post('/api/v1/users').send(mockUser);
-    const { firstName, lastName, email } = mockUser;
       
     expect(res.body).toEqual({
-      id: expect.any(String),
-      firstName,
-      lastName,
-      email,
+      message: 'Signed in successfully!',
     });
   });
-    
-  it('returns the current user', async () => {
-    const [agent, user] = await Login();
-      
-    const me = await agent.get('/api/v1/users/me');
-      
-    expect(me.body).toEqual({
-      ...user,
-        
-      exp: expect.any(Number),
-      iat: expect.any(Number),
-    });
-  });
-  
-  
 });
 
 it('should return a list of users if signed in as admin', async () => {
-  const [agent, user] = await Login({ email: 'admin' });
-  console.log(user);
+
+  const agent = request.agent(app);
+  await agent.post('/api/v1/users').send({ email: 'admin', password: '123456789', firstName:'dan', lastName: 'stan' });
   const res = await agent.get('/api/v1/users');
-  
   expect(res.body).toEqual(expect.arrayContaining([{
     id: expect.any(String),
     firstName: expect.any(String),

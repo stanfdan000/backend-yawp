@@ -48,13 +48,17 @@ describe('restaurants routes', () => {
 
 
   it('POST /restaurants should create a new review', async () => {
-    const res = await request(app).post('/api/v1/restaurants/reviews').send({
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users').send({ email: 'admin', password: '123456789', firstName:'dan', lastName: 'stan' });
+    const res = await agent.post('/api/v1/restaurants/1/reviews').send({
       rating: '5',
       comment: 'oh my gosh that was the best food ever',
       
     });
-    expect(res.body.rating).toBe(200);
-    expect(res.body.comment).toBe('');
+    console.log('hello world', res.body);
+    expect(res.status).toBe(200);
+    expect(res.body.rating).toBe('5');
+    expect(res.body.comment).toBe('oh my gosh that was the best food ever');
     
   });
 
